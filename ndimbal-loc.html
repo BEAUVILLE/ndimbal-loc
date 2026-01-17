@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NDIMBAL LOC — Activation logement</title>
+
+<style>
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto;
+  background:linear-gradient(135deg,#022c22,#065f46);
+  color:#e5e7eb;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+}
+.card{
+  width:420px;
+  max-width:95%;
+  background:rgba(0,0,0,.25);
+  border-radius:18px;
+  padding:22px;
+  backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 20px 40px rgba(0,0,0,.35);
+}
+h1{
+  margin:0 0 10px 0;
+  font-size:20px;
+}
+.desc{
+  font-size:13px;
+  opacity:.85;
+  margin-bottom:18px;
+  line-height:1.5em;
+}
+.switch{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:14px;
+  padding:12px 14px;
+  border-radius:12px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+}
+.state{
+  font-weight:800;
+  font-size:15px;
+}
+button{
+  margin-top:18px;
+  width:100%;
+  border:0;
+  border-radius:12px;
+  padding:12px;
+  font-weight:800;
+  font-size:14px;
+  background:#facc15;
+  cursor:pointer;
+}
+.notice{
+  margin-top:16px;
+  font-size:12px;
+  opacity:.75;
+  line-height:1.4em;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>🤍 NDIMBAL LOC</h1>
+  <div class="desc">
+    Active l’hospitalité NDIMBAL sur ton logement.<br>
+    1 nuit réservée = 2 nuits sur place<br>
+    2 nuits réservées = 3 nuits sur place.<br><br>
+    Tu restes totalement libre. DIGIY ne finance rien.
+  </div>
+
+  <div class="switch">
+    <div>Statut actuel</div>
+    <div class="state" id="state">—</div>
+  </div>
+
+  <button id="toggleBtn">Activer / Désactiver</button>
+
+  <div class="notice">
+    NDIMBAL est un geste volontaire du propriétaire.<br>
+    DIGIY ne collecte ni dons ni argent solidaire.<br>
+    L’outil organise seulement la règle +1 nuit.
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "https://wesqmwjjtsefyjnluosj.supabase.co";
+const SUPABASE_ANON_KEY =
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indlc3Ftd2pqdHNlZnlqbmx1b3NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUxNzg4ODIsImV4cCI6MjA4MDc1NDg4Mn0.dZfYOc2iYwYFQnH1oGJ6fY6uYwqv0g0rVYl0h1bY";
+
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const slug = new URLSearchParams(location.search).get("slug");
+const stateEl = document.getElementById("state");
+const btn = document.getElementById("toggleBtn");
+
+let pinId = null;
+let ndimbal = false;
+
+function paint(){
+  stateEl.textContent = ndimbal ? "NDIMBAL ON" : "NDIMBAL OFF";
+  stateEl.style.color = ndimbal ? "#22c55e" : "#9ca3af";
+}
+
+async function load(){
+  const { data, error } = await sb
+    .from("go_pins")
+    .select("id, ndimbal_enabled")
+    .eq("category","loc")
+    .eq("slug",slug)
+    .single();
+
+  if(error){
+    stateEl.textContent = "Erreur pin";
+    return;
+  }
+
+  pinId = data.id;
+  ndimbal = !!data.ndimbal_enabled;
+  paint();
+}
+
+async function toggle(){
+  const newState = !ndimbal;
+
+  const { error } = await sb
+    .from("go_pins")
+    .update({ ndimbal_enabled:newState })
+    .eq("id",pinId);
+
+  if(error){
+    alert("Impossible de modifier NDIMBAL.");
+    return;
+  }
+
+  ndimbal = newState;
+  paint();
+}
+
+btn.addEventListener("click",toggle);
+load();
+</script>
+
+</body>
+</html>
