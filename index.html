@@ -6,26 +6,41 @@
 <title>NDIMBAL LOC — Réglage propriétaire</title>
 <meta name="theme-color" content="#065f46">
 
+<script>
+  window.DIGIY_SUPABASE_URL = "https://wesqmwjjtsefyjnluosj.supabase.co";
+  window.DIGIY_SUPABASE_ANON_KEY = "sb_publishable_tGHItRgeWDmGjnd0CK1DVQ_BIep4Ug3";
+  window.DIGIY_SUPABASE_ANON = window.DIGIY_SUPABASE_ANON_KEY;
+  window.DIGIY_MODULE = "LOC";
+</script>
+
 <style>
 :root{
-  --bg1:#022c22; --bg2:#065f46;
+  --bg1:#022c22;
+  --bg2:#065f46;
   --card:rgba(0,0,0,.28);
   --line:rgba(255,255,255,.12);
-  --ink:#e5e7eb; --muted:rgba(229,231,235,.75);
-  --gold:#facc15; --ok:#22c55e; --bad:#f97373;
+  --ink:#e5e7eb;
+  --muted:rgba(229,231,235,.75);
+  --gold:#facc15;
+  --ok:#22c55e;
+  --bad:#f97373;
   --shadow:0 20px 40px rgba(0,0,0,.35);
 }
 *{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
 body{
   min-height:100vh;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   background:linear-gradient(135deg,var(--bg1),var(--bg2));
   color:var(--ink);
-  display:flex;align-items:center;justify-content:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   padding:16px;
 }
 .card{
-  width:460px;max-width:96%;
+  width:460px;
+  max-width:96%;
   background:var(--card);
   border-radius:18px;
   padding:22px;
@@ -33,49 +48,86 @@ body{
   border:1px solid var(--line);
   box-shadow:var(--shadow);
 }
-.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-h1{font-size:20px;margin:0}
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+h1{
+  font-size:20px;
+  margin:0;
+}
 .pill{
   border:1px solid rgba(255,255,255,.18);
-  padding:6px 10px;border-radius:999px;
-  font-weight:900;font-size:12px;color:var(--muted);
+  padding:6px 10px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:12px;
+  color:var(--muted);
   background:rgba(255,255,255,.06);
 }
 .desc{
   margin-top:10px;
   font-size:13px;
-  opacity:.9;
+  opacity:.95;
   line-height:1.5em;
 }
 .switch{
-  display:flex;align-items:center;justify-content:space-between;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
   margin-top:14px;
   padding:12px 14px;
   border-radius:12px;
   background:rgba(255,255,255,.06);
   border:1px solid var(--line);
 }
-.state{font-weight:950;font-size:15px}
-.btnRow{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
-button,a{
-  flex:1;min-width:180px;
-  border:0;border-radius:12px;
+.state{
+  font-weight:950;
+  font-size:15px;
+}
+.btnRow{
+  display:flex;
+  gap:10px;
+  margin-top:14px;
+  flex-wrap:wrap;
+}
+.btnRow button,
+.btnRow a{
+  flex:1;
+  min-width:180px;
+  border-radius:12px;
   padding:12px;
   font-weight:950;
   font-size:14px;
-  cursor:pointer;
   text-decoration:none;
-  display:flex;align-items:center;justify-content:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
-button{background:var(--gold);color:#052e16}
-a{background:rgba(255,255,255,.08);color:var(--ink);border:1px solid var(--line)}
-a:hover{filter:brightness(1.08)}
-button:disabled{opacity:.55;cursor:not-allowed}
+.btnRow button{
+  border:0;
+  cursor:pointer;
+  background:var(--gold);
+  color:#052e16;
+}
+.btnRow a{
+  background:rgba(255,255,255,.08);
+  color:var(--ink);
+  border:1px solid var(--line);
+}
+.btnRow a:hover{filter:brightness(1.08)}
+.btnRow button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
 .notice{
   margin-top:14px;
   font-size:12px;
   color:var(--muted);
-  line-height:1.4em;
+  line-height:1.45em;
 }
 .note{
   margin-top:12px;
@@ -87,13 +139,26 @@ button:disabled{opacity:.55;cursor:not-allowed}
   white-space:pre-wrap;
   display:none;
 }
-.note.ok{display:block;border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.10);color:#bbf7d0}
-.note.bad{display:block;border-color:rgba(249,115,115,.35);background:rgba(249,115,115,.10);color:#fecaca}
+.note.ok{
+  display:block;
+  border-color:rgba(34,197,94,.35);
+  background:rgba(34,197,94,.10);
+  color:#bbf7d0;
+}
+.note.bad{
+  display:block;
+  border-color:rgba(249,115,115,.35);
+  background:rgba(249,115,115,.10);
+  color:#fecaca;
+}
+.note.info{
+  display:block;
+}
 
 .floating-site-btn{
   position:fixed;
   top:calc(12px + env(safe-area-inset-top, 0px));
-  right:12px;
+  left:12px;
   z-index:60;
   display:inline-flex;
   align-items:center;
@@ -111,17 +176,13 @@ button:disabled{opacity:.55;cursor:not-allowed}
   font-weight:1000;
   box-shadow:0 12px 30px rgba(0,0,0,.28);
 }
-.floating-site-btn:hover{
-  filter:brightness(1.08);
-}
-.floating-site-btn:active{
-  transform:translateY(1px);
-}
+.floating-site-btn:hover{filter:brightness(1.08)}
+.floating-site-btn:active{transform:translateY(1px)}
 
 @media (max-width:640px){
   .floating-site-btn{
     top:calc(10px + env(safe-area-inset-top, 0px));
-    right:10px;
+    left:10px;
     min-height:42px;
     padding:11px 12px;
     font-size:12px;
@@ -135,7 +196,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
   class="floating-site-btn"
   href="https://digiylyfe.com/"
   aria-label="Retour au site DIGIYLYFE"
-  title="Retour au site"
+  title="Retour au site DIGIYLYFE"
 >← Retour au site</a>
 
 <div class="card">
@@ -158,7 +219,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
 
   <div class="btnRow">
     <button id="toggleBtn">Activer / Désactiver</button>
-    <a id="backCockpit" href="#">↩️ Retour cockpit</a>
+    <a id="backCockpit" href="./cockpit.html">↩️ Retour cockpit</a>
   </div>
 
   <div class="note" id="note"></div>
@@ -175,112 +236,145 @@ button:disabled{opacity:.55;cursor:not-allowed}
 (() => {
   "use strict";
 
-  const SUPABASE_URL = "https://wesqmwjjtsefyjnluosj.supabase.co";
+  const SUPABASE_URL =
+    window.DIGIY_SUPABASE_URL ||
+    "https://wesqmwjjtsefyjnluosj.supabase.co";
+
   const SUPABASE_ANON_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indlc3Ftd2pqdHNlZnlqbmx1b3NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUxNzg4ODIsImV4cCI6MjA4MDc1NDg4Mn0.dZfYOc2iYwYFQnH1oGJ6fY6uYwqv0g0rVYl0h1bY";
+    window.DIGIY_SUPABASE_ANON_KEY ||
+    window.DIGIY_SUPABASE_ANON ||
+    "sb_publishable_tGHItRgeWDmGjnd0CK1DVQ_BIep4Ug3";
 
-  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  const $ = (id)=>document.getElementById(id);
-  const slug = (new URLSearchParams(location.search).get("slug") || "").trim().toLowerCase();
+  const $ = (id) => document.getElementById(id);
+
+  function getStoredSlug(){
+    return (
+      new URLSearchParams(location.search).get("slug") ||
+      localStorage.getItem("digiy_loc_slug") ||
+      sessionStorage.getItem("digiy_loc_slug") ||
+      ""
+    ).trim().toLowerCase();
+  }
+
+  const slug = getStoredSlug();
 
   $("pillSlug").textContent = "slug: " + (slug || "—");
 
-  const cockpit = new URL("./index.html", location.href);
-  if (slug) cockpit.searchParams.set("slug", slug);
-  $("backCockpit").href = cockpit.toString();
+  const cockpitUrl = new URL("./cockpit.html", location.href);
+  if (slug) cockpitUrl.searchParams.set("slug", slug);
+  $("backCockpit").href = cockpitUrl.toString();
 
   const stateEl = $("state");
   const noteEl = $("note");
   const btn = $("toggleBtn");
 
   let pinId = null;
-  let nd = false;
+  let ndimbalEnabled = false;
 
-  function note(msg, cls){
-    noteEl.className = "note " + (cls || "");
-    noteEl.textContent = msg || "";
-    noteEl.style.display = msg ? "block" : "none";
+  function showNote(message, type){
+    noteEl.className = "note" + (type ? " " + type : "");
+    noteEl.textContent = message || "";
+    noteEl.style.display = message ? "block" : "none";
   }
 
-  function paint(){
-    stateEl.textContent = nd ? "NDIMBAL ON" : "NDIMBAL OFF";
-    stateEl.style.color = nd ? "#22c55e" : "rgba(229,231,235,.75)";
+  function paintState(){
+    stateEl.textContent = ndimbalEnabled ? "NDIMBAL ON" : "NDIMBAL OFF";
+    stateEl.style.color = ndimbalEnabled ? "#22c55e" : "rgba(229,231,235,.75)";
   }
 
-  async function requireSessionOrRedirect(){
-    const { data } = await sb.auth.getUser();
-    const user = data?.user;
-    if (!user){
-      const pin = new URL("./pin.html", location.href);
-      if (slug) pin.searchParams.set("slug", slug);
-      location.replace(pin.toString());
+  async function requireOwnerSessionOrRedirect(){
+    const { data, error } = await sb.auth.getUser();
+    const user = data?.user || null;
+
+    if (error || !user){
+      const pinUrl = new URL("./pin.html", location.href);
+      if (slug) pinUrl.searchParams.set("slug", slug);
+      location.replace(pinUrl.toString());
       return null;
     }
+
     return user;
   }
 
-  async function load(){
-    if(!slug){
+  async function loadState(){
+    if (!slug){
       stateEl.textContent = "Slug manquant";
-      note("❌ Slug manquant.\n➡️ Exemple : ndimbal-loc.html?slug=chez-astou-saly", "bad");
+      showNote(
+        "❌ Slug manquant.\n➡️ Exemple : ndimbal-loc.html?slug=chez-astou-saly",
+        "bad"
+      );
       btn.disabled = true;
       return;
     }
 
-    const user = await requireSessionOrRedirect();
-    if(!user) return;
+    const user = await requireOwnerSessionOrRedirect();
+    if (!user) return;
 
-    note("⏳ Chargement…", "");
+    showNote("⏳ Chargement…", "info");
     btn.disabled = true;
 
     const { data, error } = await sb
       .from("go_pins")
       .select("id, ndimbal_enabled")
-      .eq("category","loc")
+      .eq("category", "loc")
       .eq("slug", slug)
       .eq("owner_user_id", user.id)
       .single();
 
-    if(error || !data){
+    if (error || !data){
       stateEl.textContent = "Accès refusé";
-      note("❌ Tu n’es pas propriétaire de ce lieu (ou lieu introuvable).", "bad");
+      showNote(
+        "❌ Tu n’es pas propriétaire de ce lieu, ou le rail NDIMBAL n’a pas retrouvé la fiche.",
+        "bad"
+      );
       btn.disabled = true;
       return;
     }
 
     pinId = data.id;
-    nd = !!data.ndimbal_enabled;
-    paint();
-    note("", "");
+    ndimbalEnabled = !!data.ndimbal_enabled;
+    paintState();
+    showNote("", "");
     btn.disabled = false;
   }
 
-  async function toggle(){
-    if(!pinId) return;
+  async function toggleState(){
+    if (!pinId) return;
 
     btn.disabled = true;
-    const next = !nd;
+    const nextValue = !ndimbalEnabled;
 
     const { error } = await sb
       .from("go_pins")
-      .update({ ndimbal_enabled: next, ndimbal_updated_at: new Date().toISOString() })
+      .update({
+        ndimbal_enabled: nextValue,
+        ndimbal_updated_at: new Date().toISOString()
+      })
       .eq("id", pinId);
 
     btn.disabled = false;
 
-    if(error){
-      note("❌ Impossible de modifier NDIMBAL.\n➡️ Vérifie ta connexion puis réessaie.", "bad");
+    if (error){
+      showNote(
+        "❌ Impossible de modifier NDIMBAL.\n➡️ Vérifie la session, la connexion, puis réessaie.",
+        "bad"
+      );
       return;
     }
 
-    nd = next;
-    paint();
-    note(nd ? "✅ NDIMBAL activé." : "✅ NDIMBAL désactivé.", "ok");
+    ndimbalEnabled = nextValue;
+    paintState();
+    showNote(
+      ndimbalEnabled ? "✅ NDIMBAL activé." : "✅ NDIMBAL désactivé.",
+      "ok"
+    );
   }
 
-  btn.addEventListener("click", toggle);
-  load();
+  btn.addEventListener("click", toggleState);
+  paintState();
+  loadState();
 })();
 </script>
 
