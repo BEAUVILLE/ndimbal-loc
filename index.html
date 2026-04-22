@@ -3,16 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>NDIMBAL LOC — Réglage propriétaire</title>
+<title>NDIMBAL LOC — Hospitalité volontaire</title>
 <meta name="theme-color" content="#065f46">
-
-<script>
-  window.DIGIY_SUPABASE_URL = "https://wesqmwjjtsefyjnluosj.supabase.co";
-  window.DIGIY_SUPABASE_ANON_KEY = "sb_publishable_tGHItRgeWDmGjnd0CK1DVQ_BIep4Ug3";
-  window.DIGIY_SUPABASE_ANON = window.DIGIY_SUPABASE_ANON_KEY;
-  window.DIGIY_MODULE = "LOC";
-</script>
-
+<meta name="description" content="NDIMBAL LOC — une hospitalité volontaire sur certains logements DIGIYLYFE. 1 nuit réservée = 2 nuits sur place. 2 nuits réservées = 3 nuits sur place. DIGIY ne collecte ni dons ni argent solidaire.">
 <style>
 :root{
   --bg1:#022c22;
@@ -20,141 +13,27 @@
   --card:rgba(0,0,0,.28);
   --line:rgba(255,255,255,.12);
   --ink:#e5e7eb;
-  --muted:rgba(229,231,235,.75);
+  --muted:rgba(229,231,235,.80);
   --gold:#facc15;
-  --ok:#22c55e;
-  --bad:#f97373;
+  --green:#22c55e;
   --shadow:0 20px 40px rgba(0,0,0,.35);
 }
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box}
 html,body{min-height:100%}
 body{
+  margin:0;
   min-height:100vh;
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background:linear-gradient(135deg,var(--bg1),var(--bg2));
+  background:
+    radial-gradient(900px 500px at 10% 0%, rgba(250,204,21,.14), transparent 55%),
+    linear-gradient(135deg,var(--bg1),var(--bg2));
   color:var(--ink);
   display:flex;
   align-items:center;
   justify-content:center;
   padding:16px;
 }
-.card{
-  width:460px;
-  max-width:96%;
-  background:var(--card);
-  border-radius:18px;
-  padding:22px;
-  backdrop-filter:blur(6px);
-  border:1px solid var(--line);
-  box-shadow:var(--shadow);
-}
-.top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-}
-h1{
-  font-size:20px;
-  margin:0;
-}
-.pill{
-  border:1px solid rgba(255,255,255,.18);
-  padding:6px 10px;
-  border-radius:999px;
-  font-weight:900;
-  font-size:12px;
-  color:var(--muted);
-  background:rgba(255,255,255,.06);
-}
-.desc{
-  margin-top:10px;
-  font-size:13px;
-  opacity:.95;
-  line-height:1.5em;
-}
-.switch{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-top:14px;
-  padding:12px 14px;
-  border-radius:12px;
-  background:rgba(255,255,255,.06);
-  border:1px solid var(--line);
-}
-.state{
-  font-weight:950;
-  font-size:15px;
-}
-.btnRow{
-  display:flex;
-  gap:10px;
-  margin-top:14px;
-  flex-wrap:wrap;
-}
-.btnRow button,
-.btnRow a{
-  flex:1;
-  min-width:180px;
-  border-radius:12px;
-  padding:12px;
-  font-weight:950;
-  font-size:14px;
-  text-decoration:none;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.btnRow button{
-  border:0;
-  cursor:pointer;
-  background:var(--gold);
-  color:#052e16;
-}
-.btnRow a{
-  background:rgba(255,255,255,.08);
-  color:var(--ink);
-  border:1px solid var(--line);
-}
-.btnRow a:hover{filter:brightness(1.08)}
-.btnRow button:disabled{
-  opacity:.55;
-  cursor:not-allowed;
-}
-.notice{
-  margin-top:14px;
-  font-size:12px;
-  color:var(--muted);
-  line-height:1.45em;
-}
-.note{
-  margin-top:12px;
-  padding:10px 12px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.14);
-  background:rgba(255,255,255,.06);
-  font-size:12px;
-  white-space:pre-wrap;
-  display:none;
-}
-.note.ok{
-  display:block;
-  border-color:rgba(34,197,94,.35);
-  background:rgba(34,197,94,.10);
-  color:#bbf7d0;
-}
-.note.bad{
-  display:block;
-  border-color:rgba(249,115,115,.35);
-  background:rgba(249,115,115,.10);
-  color:#fecaca;
-}
-.note.info{
-  display:block;
-}
-
+.page{width:min(760px, 100%)}
 .floating-site-btn{
   position:fixed;
   top:calc(12px + env(safe-area-inset-top, 0px));
@@ -177,8 +56,138 @@ h1{
   box-shadow:0 12px 30px rgba(0,0,0,.28);
 }
 .floating-site-btn:hover{filter:brightness(1.08)}
-.floating-site-btn:active{transform:translateY(1px)}
-
+.hero{
+  background:var(--card);
+  border-radius:24px;
+  padding:28px 22px;
+  backdrop-filter:blur(6px);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:var(--gold);
+  font-size:12px;
+  font-weight:1000;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 0 6px rgba(34,197,94,.12);
+}
+h1{
+  margin:16px 0 10px;
+  font-size:clamp(30px,6vw,52px);
+  line-height:.95;
+  letter-spacing:-.04em;
+}
+.byline{
+  margin-top:6px;
+  color:var(--gold);
+  font-size:clamp(18px,3vw,28px);
+  font-weight:1000;
+  letter-spacing:.02em;
+}
+.lead{
+  margin:18px 0 0;
+  font-size:16px;
+  line-height:1.65;
+  color:var(--muted);
+  max-width:58ch;
+}
+.ruleBox{margin-top:20px;display:grid;gap:12px}
+.rule{
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06);
+  border-radius:16px;
+  padding:16px;
+}
+.rule strong{
+  display:block;
+  color:#fff8d6;
+  font-size:18px;
+  line-height:1.35;
+}
+.rule span{
+  display:block;
+  margin-top:6px;
+  color:var(--muted);
+  line-height:1.55;
+  font-size:14px;
+}
+.note{
+  margin-top:20px;
+  border-radius:18px;
+  padding:16px;
+  border:1px solid rgba(250,204,21,.24);
+  background:rgba(250,204,21,.08);
+  color:#fff3bf;
+  font-size:14px;
+  line-height:1.7;
+}
+.grid{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.card{
+  border-radius:18px;
+  padding:16px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.05);
+}
+.card h2{margin:0 0 10px;font-size:16px}
+.card p{
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.6;
+}
+.ctaRow{
+  margin-top:22px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:52px;
+  padding:0 18px;
+  border-radius:14px;
+  text-decoration:none;
+  font-weight:1000;
+  font-size:15px;
+  border:1px solid rgba(255,255,255,.14);
+}
+.btn.primary{
+  background:var(--gold);
+  color:#052e16;
+  border-color:transparent;
+}
+.btn.ghost{
+  background:rgba(255,255,255,.08);
+  color:var(--ink);
+}
+.footer{
+  margin-top:16px;
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.65;
+}
+.footer strong{color:var(--gold)}
 @media (max-width:640px){
   .floating-site-btn{
     top:calc(10px + env(safe-area-inset-top, 0px));
@@ -187,196 +196,77 @@ h1{
     padding:11px 12px;
     font-size:12px;
   }
+  .hero{padding:24px 16px}
+  .grid{grid-template-columns:1fr}
+  .ctaRow{flex-direction:column}
+  .btn{width:100%}
 }
 </style>
 </head>
 <body>
 
-<a
-  class="floating-site-btn"
-  href="https://digiylyfe.com/"
-  aria-label="Retour au site DIGIYLYFE"
-  title="Retour au site DIGIYLYFE"
->← Retour au site</a>
+<a class="floating-site-btn" href="https://digiylyfe.com/" aria-label="Retour au site DIGIYLYFE" title="Retour au site DIGIYLYFE">← Retour au site</a>
 
-<div class="card">
-  <div class="top">
-    <h1>🤍 NDIMBAL LOC</h1>
-    <div class="pill" id="pillSlug">slug: —</div>
-  </div>
+<div class="page">
+  <section class="hero">
+    <div class="eyebrow"><span class="dot"></span> NDIMBAL LOC</div>
 
-  <div class="desc">
-    Active l’hospitalité NDIMBAL sur ton logement.<br>
-    <b>1 nuit réservée = 2 nuits sur place</b><br>
-    <b>2 nuits réservées = 3 nuits sur place</b><br><br>
-    Tu restes libre. DIGIY ne finance rien.
-  </div>
+    <h1>Hospitalité volontaire</h1>
+    <div class="byline">BY DIGIYLYFE</div>
 
-  <div class="switch">
-    <div>Statut actuel</div>
-    <div class="state" id="state">—</div>
-  </div>
+    <p class="lead">
+      NDIMBAL LOC, c’est une manière simple de montrer l’hospitalité sur certains logements.
+      Ce n’est ni un don, ni une collecte, ni une promesse automatique.
+      C’est un geste libre proposé par un propriétaire.
+    </p>
 
-  <div class="btnRow">
-    <button id="toggleBtn">Activer / Désactiver</button>
-    <a id="backCockpit" href="./cockpit.html">↩️ Retour cockpit</a>
-  </div>
+    <div class="ruleBox">
+      <div class="rule">
+        <strong>1 nuit réservée = 2 nuits sur place</strong>
+        <span>Le lieu peut décider d’offrir une nuit en plus dans l’esprit NDIMBAL.</span>
+      </div>
+      <div class="rule">
+        <strong>2 nuits réservées = 3 nuits sur place</strong>
+        <span>Le principe reste le même : plus de présence vécue, sans changer l’esprit direct du lieu.</span>
+      </div>
+    </div>
 
-  <div class="note" id="note"></div>
+    <div class="note">
+      <strong>DIGIY ne finance rien.</strong><br>
+      DIGIY ne collecte ni dons ni argent solidaire.<br>
+      L’outil explique seulement une règle d’hospitalité volontaire autour du <strong>+1 nuit</strong>.
+    </div>
 
-  <div class="notice">
+    <div class="grid">
+      <div class="card">
+        <h2>Ce que c’est</h2>
+        <p>Une hospitalité choisie par le lieu, claire, humaine et directe.</p>
+      </div>
+      <div class="card">
+        <h2>Ce que ce n’est pas</h2>
+        <p>Ni une caisse solidaire, ni une réduction imposée, ni une collecte gérée par DIGIY.</p>
+      </div>
+      <div class="card">
+        <h2>Qui décide</h2>
+        <p>Le propriétaire reste libre d’activer ou non cet esprit sur son logement.</p>
+      </div>
+      <div class="card">
+        <h2>Pourquoi</h2>
+        <p>Pour remettre l’accueil, le cœur et la liberté au centre du lieu.</p>
+      </div>
+    </div>
+
+    <div class="ctaRow">
+      <a class="btn primary" href="https://digiylyfe.com/" target="_blank" rel="noopener">🌍 Voir DIGIYLYFE</a>
+      <a class="btn ghost" href="https://digiylyfe.net/" target="_blank" rel="noopener">📖 Lire la vision</a>
+    </div>
+  </section>
+
+  <div class="footer">
     NDIMBAL = geste volontaire du propriétaire.<br>
-    DIGIY ne collecte ni dons ni argent solidaire.<br>
-    L’outil organise seulement la règle +1 nuit.
+    <strong>DIGIYLYFE</strong> organise une lecture claire, pas une collecte.
   </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-(() => {
-  "use strict";
-
-  const SUPABASE_URL =
-    window.DIGIY_SUPABASE_URL ||
-    "https://wesqmwjjtsefyjnluosj.supabase.co";
-
-  const SUPABASE_ANON_KEY =
-    window.DIGIY_SUPABASE_ANON_KEY ||
-    window.DIGIY_SUPABASE_ANON ||
-    "sb_publishable_tGHItRgeWDmGjnd0CK1DVQ_BIep4Ug3";
-
-  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-  const $ = (id) => document.getElementById(id);
-
-  function getStoredSlug(){
-    return (
-      new URLSearchParams(location.search).get("slug") ||
-      localStorage.getItem("digiy_loc_slug") ||
-      sessionStorage.getItem("digiy_loc_slug") ||
-      ""
-    ).trim().toLowerCase();
-  }
-
-  const slug = getStoredSlug();
-
-  $("pillSlug").textContent = "slug: " + (slug || "—");
-
-  const cockpitUrl = new URL("./cockpit.html", location.href);
-  if (slug) cockpitUrl.searchParams.set("slug", slug);
-  $("backCockpit").href = cockpitUrl.toString();
-
-  const stateEl = $("state");
-  const noteEl = $("note");
-  const btn = $("toggleBtn");
-
-  let pinId = null;
-  let ndimbalEnabled = false;
-
-  function showNote(message, type){
-    noteEl.className = "note" + (type ? " " + type : "");
-    noteEl.textContent = message || "";
-    noteEl.style.display = message ? "block" : "none";
-  }
-
-  function paintState(){
-    stateEl.textContent = ndimbalEnabled ? "NDIMBAL ON" : "NDIMBAL OFF";
-    stateEl.style.color = ndimbalEnabled ? "#22c55e" : "rgba(229,231,235,.75)";
-  }
-
-  async function requireOwnerSessionOrRedirect(){
-    const { data, error } = await sb.auth.getUser();
-    const user = data?.user || null;
-
-    if (error || !user){
-      const pinUrl = new URL("./pin.html", location.href);
-      if (slug) pinUrl.searchParams.set("slug", slug);
-      location.replace(pinUrl.toString());
-      return null;
-    }
-
-    return user;
-  }
-
-  async function loadState(){
-    if (!slug){
-      stateEl.textContent = "Slug manquant";
-      showNote(
-        "❌ Slug manquant.\n➡️ Exemple : ndimbal-loc.html?slug=chez-astou-saly",
-        "bad"
-      );
-      btn.disabled = true;
-      return;
-    }
-
-    const user = await requireOwnerSessionOrRedirect();
-    if (!user) return;
-
-    showNote("⏳ Chargement…", "info");
-    btn.disabled = true;
-
-    const { data, error } = await sb
-      .from("go_pins")
-      .select("id, ndimbal_enabled")
-      .eq("category", "loc")
-      .eq("slug", slug)
-      .eq("owner_user_id", user.id)
-      .single();
-
-    if (error || !data){
-      stateEl.textContent = "Accès refusé";
-      showNote(
-        "❌ Tu n’es pas propriétaire de ce lieu, ou le rail NDIMBAL n’a pas retrouvé la fiche.",
-        "bad"
-      );
-      btn.disabled = true;
-      return;
-    }
-
-    pinId = data.id;
-    ndimbalEnabled = !!data.ndimbal_enabled;
-    paintState();
-    showNote("", "");
-    btn.disabled = false;
-  }
-
-  async function toggleState(){
-    if (!pinId) return;
-
-    btn.disabled = true;
-    const nextValue = !ndimbalEnabled;
-
-    const { error } = await sb
-      .from("go_pins")
-      .update({
-        ndimbal_enabled: nextValue,
-        ndimbal_updated_at: new Date().toISOString()
-      })
-      .eq("id", pinId);
-
-    btn.disabled = false;
-
-    if (error){
-      showNote(
-        "❌ Impossible de modifier NDIMBAL.\n➡️ Vérifie la session, la connexion, puis réessaie.",
-        "bad"
-      );
-      return;
-    }
-
-    ndimbalEnabled = nextValue;
-    paintState();
-    showNote(
-      ndimbalEnabled ? "✅ NDIMBAL activé." : "✅ NDIMBAL désactivé.",
-      "ok"
-    );
-  }
-
-  btn.addEventListener("click", toggleState);
-  paintState();
-  loadState();
-})();
-</script>
 
 </body>
 </html>
