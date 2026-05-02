@@ -56,6 +56,101 @@ body{
   box-shadow:0 12px 30px rgba(0,0,0,.28);
 }
 .floating-site-btn:hover{filter:brightness(1.08)}
+.floating-returns{
+  position:fixed;
+  top:calc(12px + env(safe-area-inset-top, 0px));
+  left:12px;
+  z-index:60;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.floating-returns .floating-site-btn{
+  position:static;
+  top:auto;
+  left:auto;
+}
+.floating-site-btn.hub{
+  background:rgba(250,204,21,.16);
+  border-color:rgba(250,204,21,.26);
+  color:#fff3bf;
+}
+.return-house{
+  margin-top:20px;
+  border-radius:18px;
+  padding:16px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06);
+}
+.return-house strong{
+  display:block;
+  color:#fff8d6;
+  font-size:18px;
+  line-height:1.35;
+  margin-bottom:6px;
+}
+.return-house span{
+  display:block;
+  color:var(--muted);
+  line-height:1.55;
+  font-size:14px;
+}
+.return-actions{
+  margin-top:12px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.bottom-nav{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:55;
+  padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));
+  background:rgba(2,44,34,.94);
+  border-top:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+.bottom-nav-inner{
+  width:min(760px,100%);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:6px;
+}
+.bottom-nav a,.bottom-nav button{
+  min-height:54px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  align-content:center;
+  gap:2px;
+  color:rgba(229,231,235,.80);
+  font-size:11px;
+  font-weight:1000;
+  text-align:center;
+  border:1px solid transparent;
+  text-decoration:none;
+  background:transparent;
+  padding:0 4px;
+  font-family:inherit;
+  cursor:pointer;
+}
+.bottom-nav .ico{font-size:18px;line-height:1}
+.bottom-nav a.active,.bottom-nav button.active{
+  background:var(--gold);
+  color:#052e16;
+}
+body{
+  padding-bottom:calc(86px + env(safe-area-inset-bottom,0px));
+}
+#digiy-audio-btn{
+  bottom:calc(96px + env(safe-area-inset-bottom,0px)) !important;
+}
+
 .hero{
   background:var(--card);
   border-radius:24px;
@@ -189,9 +284,12 @@ h1{
 }
 .footer strong{color:var(--gold)}
 @media (max-width:640px){
-  .floating-site-btn{
+  .floating-returns{
     top:calc(10px + env(safe-area-inset-top, 0px));
     left:10px;
+    right:10px;
+  }
+  .floating-returns .floating-site-btn{
     min-height:42px;
     padding:11px 12px;
     font-size:12px;
@@ -205,7 +303,10 @@ h1{
 </head>
 <body>
 
-<a class="floating-site-btn" href="https://digiylyfe.com/" aria-label="Retour au site DIGIYLYFE" title="Retour au site DIGIYLYFE">← Retour au site</a>
+<div class="floating-returns" aria-label="Retours DIGIY">
+  <a class="floating-site-btn" href="https://digiylyfe.com/" aria-label="Retour au site DIGIYLYFE" title="Retour au site DIGIYLYFE">🌍 Site</a>
+  <a class="floating-site-btn hub" href="https://digiy-hub.digiylyfe.com/" aria-label="Retour au HUB DIGIY" title="Retour au HUB DIGIY">🧭 HUB</a>
+</div>
 
 <div class="page">
   <section class="hero">
@@ -258,8 +359,24 @@ h1{
 
     <div class="ctaRow">
       <a class="btn primary" href="https://digiylyfe.com/" target="_blank" rel="noopener">🌍 Voir DIGIYLYFE</a>
+      <a class="btn ghost" href="https://digiy-hub.digiylyfe.com/">🧭 HUB DIGIY</a>
+      <a class="btn ghost" href="https://tarifs.digiylyfe.com/" target="_blank" rel="noopener noreferrer">📦 Tarifs</a>
       <a class="btn ghost" href="https://digiylyfe.net/" target="_blank" rel="noopener">📖 Lire la vision</a>
     </div>
+
+    <div class="return-house" id="retours-digiy">
+      <strong>Revenir dans la maison DIGIY</strong>
+      <span>
+        Cette page explique l’esprit NDIMBAL LOC. Pour revenir à la vitrine, au HUB ou aux tarifs officiels,
+        utilise les portes ci-dessous.
+      </span>
+      <div class="return-actions">
+        <a class="btn primary" href="https://digiylyfe.com/">🌍 Site DIGIYLYFE</a>
+        <a class="btn ghost" href="https://digiy-hub.digiylyfe.com/">🧭 HUB DIGIY</a>
+        <a class="btn ghost" href="https://tarifs.digiylyfe.com/" target="_blank" rel="noopener noreferrer">📦 Tarifs</a>
+      </div>
+    </div>
+
   </section>
 
   <div class="footer">
@@ -268,6 +385,17 @@ h1{
   </div>
 </div>
   
+
+<nav class="bottom-nav" aria-label="Navigation rapide NDIMBAL LOC">
+  <div class="bottom-nav-inner">
+    <a href="https://digiylyfe.com/"><span class="ico">🌍</span><span>Site</span></a>
+    <a href="https://digiy-hub.digiylyfe.com/"><span class="ico">🧭</span><span>HUB</span></a>
+    <a href="https://tarifs.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="ico">📦</span><span>Tarifs</span></a>
+    <a class="active" href="#"><span class="ico">🏠</span><span>NDIMBAL</span></a>
+    <button type="button" onclick="document.getElementById('digiy-audio-btn')?.click()"><span class="ico">🎧</span><span>Écouter</span></button>
+  </div>
+</nav>
+
 <!-- ============================================================
      DIGIY AUDIO — NDIMBAL LOC
      À coller juste avant </body> dans ta page NDIMBAL
